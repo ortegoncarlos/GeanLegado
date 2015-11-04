@@ -19,7 +19,7 @@ Pendientes
 Debe tener formatos muy amigables, como lo son los de las redes sociales, para incluir los datos básicos (sr, sra, sta, dr, empresario, abogado, ingeniero, profesor), desde cómo desean que se vean en la página, hasta una guía en el desarrollo de la biografía, el cargue de los diferentes  archivos audiovisuales, historia del apellido, escudo de la familia, árbol genealógico, canción de fondo, etc.
 
 6.	Información aprobada por el usuario y que desea se vea en la web. Ésta información debe pasar a un proceso de aprobación por parte de EGL (el programa debe detectar palabras, expresiones o publicaciones que vayan en contra de la moral y las buenas costumbres, link’s, ejecutables y demás archivos que puedan ser peligrosos para los visitantes o la misma plataforma de EGL).
-
+---- CKEDITOR DE DICCIONARIO DE MALAS PALABRAS----
 
 7.	El robot, aprueba la información 
 ---- ESTO NO ES POSIBLE CKEDITOR DE DICCIONARIO DE MALAS PALABRAS----
@@ -63,3 +63,8 @@ Debe tener formatos muy amigables, como lo son los de las redes sociales, para i
 
 -	La plataforma deberá informar al usuario de fechas importantes del homenajeado (Día de nacimiento o cumpleaños, de muerte,  si el que hizo el homenaje era mi padre, el día del padre, si era madre, el día de la madre, para esos días el sistema debe regalarle una flor que perderá sus pétalos en una semana, igual le informará al usuario.
 
+-	Pago en línea.
+
+-	Opción de escoger un obsequio con la compra del bono (como una placa, un anillo, un obsequio tipo trofeo, una medalla, un posillo, un portaretrato, un esfero) y programar el envío.
+
+-	Opción de generar el código QR (podrá diseñarlo) , después del pago, para imprimir en formato PDF, pudiendo escoger el marco del bono, y enviarlo por vía electrónica (email, twitter, whatsapp, etc.) 
