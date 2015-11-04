@@ -1,0 +1,26 @@
+	<nav id="nav">
+							<ul>
+								<li><a href="{% url "inicio" %}">Inicio</a></li>
+								<li>
+									<a href="#">Servicios</a>
+									<ul>
+										<li><a href="{% url "servicios" %}">Nuestros servicios</a></li>
+										<li><a href="{% url "funciona" %}">¿Cómo funciona?</a></li>
+										<li><a href="{% url "preguntas" %}">Preguntas Frecuentes</a></li>
+										<li>
+											<a href="#">¿Cómo hacer biografía?</a>
+											<ul>
+												<li><a href="{% url "biografia" %}">Biografía</a></li>
+												<li><a href="{% url "biografia-cronologica" %}">Biografía Cronológica</a></li>
+												<li><a href="{% url "biografia-narrativa" %}">Biografía Narrativa</a></li>
+
+											</ul>
+										</li>
+
+									</ul>
+								</li>
+								<li><a href="{% url "somos" %}">¿Quiénes Somos?</a></li>
+								<li><a href="{% url 'homenajes' %}">Homenajes</a></li>
+								<li><a href="{% url 'contacto' %}">Contáctenos</a></li>
+							</ul>
+						</nav>

@@ -1,0 +1,157 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="left-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo">Helios</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+						{% include 'menu.html' %}
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<div class="row 200%">
+							<div class="4u 12u(mobile)" id="sidebar">
+								<hr class="first" />
+								<section>
+									<header>
+										<h3><a href="#">Accumsan sed penatibus</a></h3>
+									</header>
+									<p>
+										Dolor sed fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
+										porttitor phasellus tempus cubilia ultrices tempor sagittis  tellus ante diam nec penatibus dolor cras
+										magna tempus feugiat veroeros.
+									</p>
+									<footer>
+										<a href="#" class="button">Learn More</a>
+									</footer>
+								</section>
+								<hr />
+								<section>
+									<header>
+										<h3><a href="#">Sed lorem etiam consequat</a></h3>
+									</header>
+									<p>
+										Tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
+									</p>
+									<div class="row 50%">
+										<div class="4u">
+											<a href="#" class="image fit"><img src="../static/images/images/pic10.jpg" alt="" /></a>
+										</div>
+										<div class="8u">
+											<h4>Nibh sed cubilia</h4>
+											<p>
+												Amet nullam fringilla nibh nulla convallis tique ante proin.
+											</p>
+										</div>
+									</div>
+									<div class="row 50%">
+										<div class="4u">
+											<a href="#" class="image fit"><img src="../static/images/images/pic11.jpg" alt="" /></a>
+										</div>
+										<div class="8u">
+											<h4>Proin sed adipiscing</h4>
+											<p>
+												Amet nullam fringilla nibh nulla convallis tique ante proin.
+											</p>
+										</div>
+									</div>
+									<div class="row 50%">
+										<div class="4u">
+											<a href="#" class="image fit"><img src="../static/images/images/pic12.jpg" alt="" /></a>
+										</div>
+										<div class="8u">
+											<h4>Lorem feugiat magna</h4>
+											<p>
+												Amet nullam fringilla nibh nulla convallis tique ante proin.
+											</p>
+										</div>
+									</div>
+									<div class="row 50%">
+										<div class="4u">
+											<a href="#" class="image fit"><img src="../static/images/images/pic13.jpg" alt="" /></a>
+										</div>
+										<div class="8u">
+											<h4>Sed tempus fringilla</h4>
+											<p>
+												Amet nullam fringilla nibh nulla convallis tique ante proin.
+											</p>
+										</div>
+									</div>
+									<div class="row 50% no-collapse">
+										<div class="4u">
+											<a href="#" class="image fit"><img src="../static/images/images/pic14.jpg" alt="" /></a>
+										</div>
+										<div class="8u">
+											<h4>Malesuada fermentum</h4>
+											<p>
+												Amet nullam fringilla nibh nulla convallis tique ante proin.
+											</p>
+										</div>
+									</div>
+									<footer>
+										<a href="#" class="button">Magna Adipiscing</a>
+									</footer>
+								</section>
+							</div>
+							<div class="8u 12u(mobile) important(mobile)" id="content">
+								<article id="main">
+									<header>
+										<h2><a href="#">{{ perfil_persona.nombre }}</a></h2>
+										<p>
+										Profesion:	{{ perfil_persona.profesion }}
+										</p>
+                                        <p>
+										Fecha de Nacimiento:{{ perfil_persona.fecha_nacimiento }}
+										</p>
+                                        <p>
+										Lugar de Nacimiento:{{ perfil_persona.lugar_nacimiento }}
+										</p>
+                                         <p>
+										Audio:
+                                            <audio controls="controls" autoplay="autoplay" >
+                                                <source src="{{ STATIC_URL }}{{ perfil_persona.audio_file }}" />
+                                            </audio>
+										</p>
+                                        <p>
+                                        <h3><a href="{% url 'fotos' perfil_persona.id  %}">Fotos</a></h3>
+                                        </p>
+                                        <p>
+                                        <h3><a href="{% url 'reconocimientos' perfil_persona.id  %}">Reconocimiento</a></h3>
+                                        </p>
+
+                                        <p>
+                                        <h3><a href="{% url 'origen_apellido' perfil_persona.id %}">Origen del apellido</a></h3>
+                                        </p>
+									</header>
+									<a href="#" class="image featured"><img src="{{ STATIC_URL }}{{ perfil_persona.imagen }}" alt="" /></a>
+									<p>
+										{{ perfil_persona.biografia | safe }}
+									</p>
+
+
+								</article>
+							</div>
+						</div>
+						<hr />
+
+					</div>
+
+				</div>
+
+
+		</div>
+{% endblock Content %}

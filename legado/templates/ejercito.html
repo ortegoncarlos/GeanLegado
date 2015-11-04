@@ -1,0 +1,77 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header" >
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="{% url "inicio" %}" id="logo">El gran Legado</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+					{% include 'menu.html' %}
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="#">{{ ejer.nombre }}</a></h2>
+								<p>
+									{{ ejer.resumen | safe }}
+								</p>
+							</header>
+                            {% load static from staticfiles %}
+							<!--<a href="#" class="image featured"><img src="{% static "images/pic06.jpg" %}" alt="" /></a>-->
+
+							<section>
+								<!--<header>
+									<h3>Ultrices tempor sagittis nisl</h3>
+								</header>-->
+								<p>
+								{{ ejer.texto | safe  }}
+
+								</p>
+
+							</section>
+                            <!--
+							<section>
+								<header>
+									<h3>Augue euismod feugiat tempus</h3>
+								</header>
+								<p>
+
+                                    ¿Le gustaría hacerle un homenaje muy especial, original, sobrio y, respetuoso a ese ser querido que tanto admira ó
+                                    estima y que ése homenaje dure para siempre?
+								</p>
+                                <p>
+                                    LEGADO: Aquello que se deja o transmite a los sucesores, sea cosa material o inmaterial. (RAE);
+                                    por extensión se habla de legado a lo que se transmite de una generación a otra, ya sea de aptitudes,
+                                    valores, historia, religión, costumbres, etcétera.
+                                </p>
+							</section>
+							-->
+						</article>
+						<hr />
+
+					</div>
+
+				</div>
+
+
+
+		</div>
+
+
+
+	</body>
+{% endblock Content %}

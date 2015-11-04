@@ -1,0 +1,74 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="{% url "inicio" %}" id="logo">El gran Legado</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+					{% include 'menu.html' %}
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="{% url "fuerza-publica" %}">{{ fuerza.nombre }}</a></h2>
+								<p>
+									{{ fuerza.resumen | safe }}
+								</p>
+							</header>
+                            {% load static from staticfiles %}
+							<!--<a href="#" class="image featured"><img src="{% static "images/pic06.jpg" %}" alt="" /></a>-->
+
+							<section>
+								<header>
+									<h3>Interesante:</h3>
+								</header>
+								<p>
+									{{ fuerza.texto | safe }}
+								</p>
+
+							</section>
+
+
+						</article>
+						<hr />
+						<div class="row">
+                            {% for item in ejercitos %}
+							<article class="4u 12u(mobile) special">
+								<a href="{% url "ejercito" item.id %}" class="image featured"><img   src="{{ STATIC_URL }}{{ item.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="{% url "ejercito" item.id  %}">{{ item.nombre }}</a></h3>
+								</header>
+								<p>
+									{{ item.resumen  | safe  }}
+								</p>
+							</article>
+                            {% endfor %}
+
+						</div>
+					</div>
+
+				</div>
+
+
+
+		</div>
+
+
+
+	</body>
+{% endblock Content %}

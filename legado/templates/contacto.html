@@ -1,0 +1,104 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="{% url "inicio" %}" id="logo">El gran Legado</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+					{% include 'menu.html' %}
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2>{{direc.nombre }}</h2>
+
+							</header>
+                            {% load static from staticfiles %}
+							<!--<a href="#" class="image featured"><img src="{{ STATIC_URL }}{{ team.imagen }}" alt="" /></a>-->
+							<section>
+
+								<p>
+								Calle:{{ direc.calle  | safe }}
+								</p>
+                                <p>
+								Telefono:{{ direc.telefono  | safe }}
+								</p>
+                                <p>
+								Movil:{{ direc.movil  | safe }}
+								</p>
+                                <p>
+								Ubicacion:{{ direc.ubicacion  | safe }}
+								</p>
+
+							</section>
+						</article>
+						<hr />
+					<!-- Main -->
+				<section id="main" class="container 75%">
+					<header>
+						<h2>Contactenos!</h2>
+						<p>Debe contactarnos para brindarle nuestro servicio</p>
+					</header>
+					<div class="box">
+						<form method="post" action="#">
+							<div class="row uniform 50%">
+								<div class="6u 12u(mobilep)">
+									<input type="text" name="name" id="name" value="" placeholder="Nombre" />
+								</div>
+								<div class="6u 12u(mobilep)">
+									<input type="email" name="email" id="email" value="" placeholder="Email" />
+								</div>
+                                <div class="6u 12u(mobilep)">
+									<input type="text" name="name" id="name" value="" placeholder="Telefono contacto" />
+								</div>
+								<div class="6u 12u(mobilep)">
+									<input type="email" name="email" id="email" value="" placeholder="Ciudad" />
+								</div>
+							</div>
+							<div class="row uniform 50%">
+								<div class="12u">
+									<input type="text" name="subject" id="subject" value="" placeholder="Asunto" />
+								</div>
+							</div>
+							<div class="row uniform 50%">
+								<div class="12u">
+									<textarea name="message" id="message" placeholder="Mensaje" rows="6"></textarea>
+								</div>
+							</div>
+							<div class="row uniform">
+								<div class="12u">
+									<ul class="actions align-center">
+										<li><input type="submit" value="Enviar" /></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</div>
+				</section>
+					</div>
+
+				</div>
+
+
+
+		</div>
+
+
+
+	</body>
+{% endblock Content %}

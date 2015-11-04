@@ -1,0 +1,61 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header" >
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="index.html" id="logo">El gran Legado</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+					{% include 'menu.html' %}
+
+				</div>
+
+
+		<!-- Work -->
+			<section id="work" class="main style3 primary">
+				<div class="content container">
+					<header>
+						<h2>Mi reconociemientos</h2>
+						<p>Breve descripcion de l reconocimientos.</p>
+					</header>
+
+					<!-- Lightbox Gallery  -->
+						<div class="container 75% gallery">
+							<div class="row 0% images">
+                                {% for item in reconocimientos %}
+								<div class="6u 12u(mobile)"><a href="{{ STATIC_URL }}{{ item.imagen }}" class="image fit from-left"><img src="{{ STATIC_URL }}{{ item.imagen }}" title="{{ item.descripcion }}" alt="" /></a></div>
+
+                                {% endfor %}
+							</div>
+
+						</div>
+
+				</div>
+			</section>
+
+
+		<!-- Scripts -->
+        {% load static  from staticfiles %}
+			<script src="{% static "base2/assets/js/jquery.min.js" %}"></script>
+			<script src="{% static "base2/assets/js/jquery.poptrox.min.js" %}"></script>
+			<script src="{% static "base2/assets/js/jquery.scrolly.min.js" %}"></script>
+			<script src="{% static "base2/assets/js/jquery.scrollex.min.js" %}"></script>
+			<script src="{% static "base2/assets/js/skel.min.js" %}"></script>
+			<script src="{% static "base2/assets/js/util.js" %}"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="{% static "base2/assets/js/main.js" %}"></script>
+        	</div>
+
+
+
+	</body>
+{% endblock Content %}

@@ -1,0 +1,113 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="{% url "inicio"  %}" id="logo">El gran Legado</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+					{% include 'menu.html' %}
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="{% url "legajados" %}">{{ legaja.nombre }}</a></h2>
+								<p>
+									{{ legaja.resumen | safe }}
+
+								</p>
+							</header>
+                            {% load static from staticfiles %}
+							<!--<a href="#" class="image featured"><img src="{% static "images/pic06.jpg" %}" alt="" /></a>-->
+
+                        <div class="row">
+							<article class="4u 12u(mobile) special">
+								<a href="{% url 'fuerza-publica' %}" class="image featured"><img src="{{ STATIC_URL }}{{ fuerza.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="{% url 'fuerza-publica' %}">{{ fuerza.nombre }}</a></h3>
+								</header>
+								<p>
+									{{ fuerza.resumen | safe}}
+								</p>
+							</article>
+							<article class="4u 12u(mobile) special">
+								<a href="#" class="image featured"><img src="{{ STATIC_URL }}{{ angelito.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="#">{{ angelito.nombre }}</a></h3>
+								</header>
+								<p>
+									{{ angelito.resumen | safe }}
+								</p>
+							</article>
+							<article class="4u 12u(mobile) special">
+								<a href="#" class="image featured"><img src="{{ STATIC_URL }}{{ familia.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="#">{{ familia.nombre }}</a></h3>
+								</header>
+								<p>
+									{{ familia.resumen | safe }}
+								</p>
+							</article>
+						</div>
+
+
+						</article>
+						<hr />
+
+						<div class="row">
+
+							<article class="4u 12u(mobile) special">
+								<a href="{% url 'matrimonios' %}" class="image featured"><img src="{{ STATIC_URL }}{{ matrimonio.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="{% url 'matrimonios' %}">{{ matrimonio.nombre }}</a></h3>
+								</header>
+								<p>
+
+                                    {{ matrimonio.resumen | safe}}
+								</p>
+							</article>
+							<article class="4u 12u(mobile) special">
+								<a href="{% url 'quince' %}" class="image featured"><img src="{{ STATIC_URL }}{{ quince.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="{% url 'quince' %}">{{ quince.nombre }} </a></h3>
+								</header>
+								<p>
+									{{ quince.resumen | safe}}
+								</p>
+							</article>
+							<article class="4u 12u(mobile) special">
+								<a href="{% url 'graduacion' %}" class="image featured"><img src="{{ STATIC_URL }}{{ gradua.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="{% url 'graduacion' %}">{{ gradua.nombre }}</a></h3>
+								</header>
+								<p>
+									{{ gradua.resumen | safe}}
+								</p>
+							</article>
+						</div>
+					</div>
+
+				</div>
+
+
+
+		</div>
+
+
+
+	</body>
+{% endblock Content %}

@@ -1,0 +1,54 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="{% url 'inicio' %}" id="logo">El gran Legado</a></h1>
+							</header>
+						</div>
+
+					<!-- Nav -->
+					{% include 'menu.html' %}
+
+				</div>
+
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="{% url 'matrimonios' %}">{{ matrimonio.nombre }}</a></h2>
+								<p>
+									Aqui puede ir una imagen o un texto!
+								</p>
+							</header>
+                            {% load static from staticfiles %}
+							<!--<a href="#" class="image featured"><img src="{% static "images/pic06.jpg" %}" alt="" /></a>-->
+							<p>
+								{{ matrimonio.texto | safe }}
+							</p>
+
+
+						</article>
+						<hr />
+
+					</div>
+
+				</div>
+
+
+
+		</div>
+
+
+
+	</body>
+{% endblock Content %}
