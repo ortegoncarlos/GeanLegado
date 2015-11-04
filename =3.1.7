@@ -1,0 +1,29 @@
+Downloading/unpacking celery
+Downloading/unpacking kombu>=3.0.29,<3.1 (from celery)
+Downloading/unpacking pytz>dev (from celery)
+Downloading/unpacking billiard>=3.3.0.21,<3.4 (from celery)
+  Running setup.py (path:/tmp/pip_build_root/billiard/setup.py) egg_info for package billiard
+    
+    warning: no files found matching '*.py' under directory 'Lib'
+Downloading/unpacking amqp>=1.4.5,<2.0 (from kombu>=3.0.29,<3.1->celery)
+  Running setup.py (path:/tmp/pip_build_root/amqp/setup.py) egg_info for package amqp
+    
+Downloading/unpacking anyjson>=0.3.3 (from kombu>=3.0.29,<3.1->celery)
+  Downloading anyjson-0.3.3.tar.gz
+  Running setup.py (path:/tmp/pip_build_root/anyjson/setup.py) egg_info for package anyjson
+    
+Installing collected packages: celery, kombu, pytz, billiard, amqp, anyjson
+  Running setup.py install for billiard
+    building '_billiard' extension
+    x86_64-linux-gnu-gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -DHAVE_SEM_OPEN=1 -DHAVE_FD_TRANSFER=1 -DHAVE_SEM_TIMEDWAIT=1 -IModules/_billiard -I/usr/include/python2.7 -c Modules/_billiard/multiprocessing.c -o build/temp.linux-x86_64-2.7/Modules/_billiard/multiprocessing.o
+    x86_64-linux-gnu-gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -DHAVE_SEM_OPEN=1 -DHAVE_FD_TRANSFER=1 -DHAVE_SEM_TIMEDWAIT=1 -IModules/_billiard -I/usr/include/python2.7 -c Modules/_billiard/socket_connection.c -o build/temp.linux-x86_64-2.7/Modules/_billiard/socket_connection.o
+    x86_64-linux-gnu-gcc -pthread -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -fPIC -DHAVE_SEM_OPEN=1 -DHAVE_FD_TRANSFER=1 -DHAVE_SEM_TIMEDWAIT=1 -IModules/_billiard -I/usr/include/python2.7 -c Modules/_billiard/semaphore.c -o build/temp.linux-x86_64-2.7/Modules/_billiard/semaphore.o
+    x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -Wl,-z,relro -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -D_FORTIFY_SOURCE=2 -g -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security build/temp.linux-x86_64-2.7/Modules/_billiard/multiprocessing.o build/temp.linux-x86_64-2.7/Modules/_billiard/socket_connection.o build/temp.linux-x86_64-2.7/Modules/_billiard/semaphore.o -lrt -o build/lib.linux-x86_64-2.7/_billiard.so
+    
+    warning: no files found matching '*.py' under directory 'Lib'
+  Running setup.py install for amqp
+    
+  Running setup.py install for anyjson
+    
+Successfully installed celery kombu pytz billiard amqp anyjson
+Cleaning up...

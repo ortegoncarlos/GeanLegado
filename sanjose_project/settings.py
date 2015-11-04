@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
     'ckeditor',
     'ckeditor_uploader',
     'imagekit',
@@ -57,10 +58,15 @@ MIDDLEWARE_CLASSES = (
     'audiofield.middleware.threadlocals.ThreadLocals',
 )
 
-ROOT_URLCONF = 'GranLegado.urls'
+ROOT_URLCONF = 'sanjose_project.urls'
 
-WSGI_APPLICATION = 'GranLegado.wsgi.application'
+WSGI_APPLICATION = 'sanjose_project.wsgi.application'
 
+EMAIL_HOST = 'smtp.enlacarretera.co'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'info@enlacarretera.co'
+EMAIL_HOST_PASSWORD = 'DXfLIM!v6'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -71,13 +77,36 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'django',
+        'USER': 'django',
+        'PASSWORD': '43YIeCYy8C',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+"""
+#Search By haystack and xapian
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'xapian_backend.XapianEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'xapian_index')
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ES'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -91,6 +120,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR,'/static')
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
@@ -100,7 +131,7 @@ STATICFILES_DIRS = (
 )
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: '/home/media/media.lawrence.com/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'legado\\static')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 #STATIC_ROOT = os.path.join(BASE_DIR,'blog\\static')
 
@@ -130,7 +161,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'legado.context_processors.mostrarfrase',
 
 )
-STATIC_ROOT = os.path.join(BASE_DIR,'legado/static')
+
 
 CHANNEL_TYPE_VALUE = 0
 FREQ_TYPE_VALUE = 8000

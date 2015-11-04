@@ -5,7 +5,9 @@ from legado import views
 admin.autodiscover()
 urlpatterns = patterns('legado.views',
                        (r'^ckeditor/', include('ckeditor_uploader.urls')),
+                       (r'^search/', include('haystack.urls')),
                    url(r'^$', 'Inicio', name='inicio'),
+                   url(r'^search/autocomplete/', 'autocomplete', name='autocomplete'),
                    url(r'^somos/', 'SomosIndex', name='somos'),
                    url(r'^funciona/', 'FuncionaIndex', name='funciona'),
                    url(r'^preguntas/', 'PreguntasIndex', name='preguntas'),

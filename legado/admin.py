@@ -2,7 +2,6 @@ from django.contrib import admin
 from legado.models import *
 from django import forms
 
-
 class ServicioAdmin(admin.ModelAdmin):
     list_display = ('id','nombre','resumen','mostrarimagen')
     list_editable = ('nombre', 'resumen',)
@@ -35,12 +34,9 @@ class LegajadosAdmin(admin.ModelAdmin):
 
 class AdminPerfil(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['nombre'] }
-
-from legado.models import Perfil
-
-# add 'audio_file_player' tag to your admin view
-list_display = ( 'audio_file_player')
-actions = ['custom_delete_selected']
+    list_display = ( 'nombre','qr_tag','audio_file_player')
+    actions = ['custom_delete_selected']
+    readonly_fields = ('qr_tag', "qrcode", 'audio_file_player', )
 
 def custom_delete_selected(self, request, queryset):
     #custom delete code

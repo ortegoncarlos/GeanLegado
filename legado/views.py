@@ -1,7 +1,19 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from legado.models import *
+from django.http import HttpResponse
+from haystack.query import SearchQuerySet
+import json
 
+def autocomplete(request):
+    sqs = SearchQuerySet().autocomplete(content_auto=request.GET.get('q', ''))[:5]
+    suggestions = [result for result in sqs]
+    # Make sure you return a JSON object, not a bare list.
+    # Otherwise, you could be vulnerable to an XSS attack.
+    the_data = json.dumps({
+        'results': suggestions
+    })
+    return HttpResponse(the_data, content_type='application/json')
 
 def Inicio(request):
     perfiles = Perfil.objects.all()
@@ -74,6 +86,7 @@ def FuerzaPublicaIndex(request):
 
 def PerfilPersona(request, slug, id):
     perfil_persona = Perfil.objects.get(id=id)
+    fotos = FotosPerfil.objects.filter(perfil=id)
     return render_to_response('perfil-persona.html',locals(), context_instance=RequestContext(request))
 
 def OrigenApell(request, id):
