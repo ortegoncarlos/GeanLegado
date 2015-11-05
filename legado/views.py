@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, get_object_or_404
 from django.template import RequestContext
 from legado.models import *
 from django.http import HttpResponse
@@ -84,9 +84,9 @@ def FuerzaPublicaIndex(request):
     ejercitos = EjercitoMilitar.objects.all()
     return render_to_response('fuerza_publica.html',locals(), context_instance=RequestContext(request))
 
-def PerfilPersona(request, slug, id):
-    perfil_persona = Perfil.objects.get(id=id)
-    fotos = FotosPerfil.objects.filter(perfil=id)
+def PerfilPersona(request, slug):
+    perfil_persona = get_object_or_404(Perfil,slug=slug)
+    fotos = FotosPerfil.objects.filter(perfil_id=perfil_persona.id)
     return render_to_response('perfil-persona.html',locals(), context_instance=RequestContext(request))
 
 def OrigenApell(request, id):
@@ -111,3 +111,11 @@ def Reconocimientos(request, id):
 def ContactoIndex(request):
     direc = Direccion.objects.first()
     return render_to_response('contacto.html',locals(), context_instance=RequestContext(request))
+
+from .serializers import PerfilSerializer
+from rest_framework import viewsets
+
+class PerfilViewSet(viewsets.ModelViewSet):
+    queryset = Perfil.objects.all()
+    serializer_class = PerfilSerializer
+
