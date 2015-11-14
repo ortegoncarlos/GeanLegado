@@ -35,7 +35,7 @@ class Perfil(models.Model):
     audio_file_player.short_description = ('Audio file player')
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.nombre+"-"+str(self.fecha_nacimiento))
+        self.slug = slugify(str(self.nombre)+"-"+str(self.fecha_nacimiento))
         super(Perfil, self).save(*args, **kwargs)
 
         import requests
@@ -73,7 +73,7 @@ class Perfil(models.Model):
     def get_absolute_url(self):
         return urlresolvers.reverse('perfil', args=[self.slug,self.pk])
     def __unicode__(self):
-        return self.nombre
+        return str(self.nombre)
 
 
 class FotosPerfil(models.Model):
