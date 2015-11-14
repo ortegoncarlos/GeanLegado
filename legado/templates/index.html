@@ -42,9 +42,9 @@
                     {% load static  from staticfiles %}
                         {% for obj in perfiles %}
 						<article>
-							<a href="{% url "perfil" obj.slug obj.id %}" class="image featured"><img src="{% if obj.imagen %}{{ obj.imagen.url }}{% endif %}" alt="" /></a>
+							<a href="{% url "perfil" obj.slug %}" class="image featured"><img src="{% if obj.imagen %}{{ obj.imagen.url }}{% endif %}" alt="" /></a>
 							<header>
-								<h3><a href="{% url "perfil" obj.slug obj.id %}">{{ obj.nombre }}</a></h3>
+								<h3><a href="{% url "perfil" obj.slug %}">{{ obj.nombre }}</a></h3>
 							</header>
 							<p>{{ obj.profesion }}</p>
 						</article>
