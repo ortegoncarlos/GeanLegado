@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill, ResizeToFit
@@ -10,6 +11,7 @@ from django.core import urlresolvers
 
 class Perfil(models.Model):
     nombre = models.CharField(max_length=100,verbose_name='Nombre')
+    usuario = models.ForeignKey(User)
     fecha_nacimiento = models.DateField(max_length=100,verbose_name='Fecha de nacimiento',blank=True,null=True)
     lugar_nacimiento = models.CharField(max_length=100,verbose_name='Lugar de Nacimiento',blank=True,null=True)
     imagen = ProcessedImageField(upload_to='perfiles/img',processors=[ResizeToFit(1200, 500)],format='JPEG',options={'quality': 50}, blank=True,null=True)
@@ -18,6 +20,9 @@ class Perfil(models.Model):
     origen_apellido = models.CharField(max_length=100,verbose_name='Origen del apellido',blank=True,null=True)
     qrcode = models.CharField(max_length=100,verbose_name='url del codigo QR',blank=True,null=True)
     slug = models.SlugField(unique=True)
+    timestamp = models.DateTimeField(auto_now=True)
+    listo = models.BooleanField(default=True, verbose_name="Listo")
+    publico = models.BooleanField(default=False, verbose_name="Publico")
 
     audio_file = AudioField(upload_to='perfiles/audio', blank=True,
                         ext_whitelist=(".mp3", ".wav", ".ogg"),
@@ -96,7 +101,7 @@ class Servicio(models.Model):
     plan_amarillo = RichTextField(verbose_name='Plan Amarillo')
     plan_azul = RichTextField(verbose_name='Plan Azul')
     plan_rojo = RichTextField(verbose_name='Plan Rojo')
-
+    """Los planes debe ser un Many to many a un Planes"""
     def miimagen(self):
         return settings.STATIC_URL+str(self.imagen)
 
@@ -110,7 +115,7 @@ class Homenajes(models.Model):
     parrafo_uno = RichTextField(verbose_name='Parrafo Primero')
     parrafo_dos = RichTextField(verbose_name='Parrafo Segundo')
     parrafo_tres = RichTextField(verbose_name='Parrafo Tercero')
-
+    """Los PARRAFOS debe ser un Many to many a un MODEL"""
     def miimagen(self):
         return settings.STATIC_URL+str(self.imagen)
 
@@ -121,6 +126,7 @@ class Somos(models.Model):
     parrafo_dos = RichTextField(verbose_name='Parrafo Segundo')
     parrafo_tres = RichTextField(verbose_name='Parrafo Tercero')
     parrafo_cuatro = RichTextField(verbose_name='Parrafo Cuatro')
+    """Los PARRAFOS debe ser un Many to many a un MODEL"""
     imagen = ProcessedImageField(upload_to='img/somos',processors=[ResizeToFit(1200, 551)],format='JPEG',options={'quality': 60})
 
 class FuerzaMilitar(models.Model):
@@ -143,6 +149,7 @@ class Funciona(models.Model):
     parrafo_uno = RichTextField(verbose_name='Parrafo Primero')
     parrafo_dos = RichTextField(verbose_name='Parrafo Segundo')
     parrafo_tres = RichTextField(verbose_name='Parrafo Tercero')
+    """Los PARRAFOS debe ser un Many to many a un MODEL"""
     imagen = ProcessedImageField(upload_to='img/somos',processors=[ResizeToFit(1200, 551)],format='JPEG',options={'quality': 60})
 
 

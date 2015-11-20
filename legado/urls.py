@@ -5,7 +5,7 @@ from legado import views
 admin.autodiscover()
 urlpatterns = patterns('legado.views',
                        (r'^ckeditor/', include('ckeditor_uploader.urls')),
-                       (r'^search/', include('haystack.urls')),
+                      # (r'^search/', include('haystack.urls')),
                    url(r'^$', 'Inicio', name='inicio'),
                    url(r'^search/autocomplete/', 'autocomplete', name='autocomplete'),
                    url(r'^somos/', 'SomosIndex', name='somos'),
@@ -23,9 +23,13 @@ urlpatterns = patterns('legado.views',
                    url(r'^graduacion/', 'GraduacionIndex', name='graduacion'),
                    url(r'^fuerza-publica/', 'FuerzaPublicaIndex', name='fuerza-publica'),
                    url(r'^perfil/(?P<slug>[-\w\d]+)/$', 'PerfilPersona', name='perfil'),
+                   url(r'^editar-homenaje/(?P<slug>[-\w]+)/(?P<id>\d+)/$', views.EditarHomenaje.as_view(), name='editar-homenaje'),
                    url(r'^origen_apellido/(?P<id>\d+)$', 'OrigenApell', name='origen_apellido'),
                    url(r'^fotos/(?P<id>\d+)$','Fotos', name='fotos'),
                    url(r'^ejercito/(?P<id>\d+)$','EjercitoIndex', name='ejercito'),
                    url(r'^reconocimientos/(?P<id>\d+)$','Reconocimientos', name='reconocimientos'),
+                   url(r'^mishomenajes/','Mishomenajes', name='mishomenajes'),
+                   url(r'^crear-homenaje$','CrearHomenaje',name='crear-homenaje'),
+                   url(r'^search/', 'SearchIndex', name='search'),
 
                        )

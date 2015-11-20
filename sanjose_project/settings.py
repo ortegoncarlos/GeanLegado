@@ -176,6 +176,20 @@ CHANNEL_TYPE_VALUE = 0
 FREQ_TYPE_VALUE = 8000
 CONVERT_TYPE_VALUE = 0
 
+# HAYSTACK_CONNECTIONS = {
+#     'default': {
+#         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+#         'URL': 'http://127.0.0.1:9200/',
+#         'INDEX_NAME': 'perfil',
+#     },
+# }
+
+PALABRAS_INAPROPIADAS = ['malapalabra1','malapalabra2','malapalabra3','malapalabra4','malapalabra5','mi casa']
+EXPRESION_REGULAR_URL = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
+MENSAJE_URLS = 'La biografia que usted intenta hacer no sera posible guardar porque contiene direcciones url'
+
+# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
 #
 # CKEDITOR_CONFIGS = {
 #     'default': {
@@ -214,13 +228,13 @@ CKEDITOR_CONFIGS = {
         'toolbar_YouCustomToolbarConfig': [
             {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
             {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
+            {'name': 'editing', 'items': ['SpellChecker','Find','Replace','-','SelectAll','-','Scayt']},
             {'name': 'forms',
              'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
                        'HiddenField']},
             '/',
             {'name': 'basicstyles',
-             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat',]},
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
                        'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
@@ -269,3 +283,29 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': [
+#             [      'Undo', 'Redo',
+#               '-', 'Bold', 'Italic', 'Underline',
+#               '-', 'Link', 'Unlink', 'Anchor',
+#               '-', 'Format',
+#               '-', 'SpellChecker', 'Scayt',
+#               '-', 'Maximize',
+#             ],
+#             [      'HorizontalRule',
+#               '-', 'Table',
+#               '-', 'BulletedList', 'NumberedList',
+#               '-', 'Cut','Copy','Paste','PasteText','PasteFromWord',
+#               '-', 'SpecialChar',
+#               '-', 'Source',
+#               '-', 'About',
+#             ]
+#         ],
+#         'width': 840,
+#         'height': 300,
+#         'toolbarCanCollapse': False,
+#     }
+# }

@@ -1,0 +1,73 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+			<!-- Header -->
+				<div id="header" >
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="{% url "inicio" %}" id="logo">El gran Legado</a></h1>
+							</header>
+						</div>
+					<!-- Nav -->
+					{% include 'menu.html' %}
+				</div>
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="{% url "homenajes" %}">{{ homenaj.nombre }}</a></h2>
+								<p>
+									{{ homenaj.resumen | safe }}
+								</p>
+							</header>
+	{%include "buscador.html"%}
+                        <p>
+
+                        </p>
+                            <div class="row">
+                            {% load static  from staticfiles %}
+                            {% for perfil in perfiles %}
+                            <article class="4u 12u(mobile) special">
+								<a href="{% url "perfil" perfil.slug %}" class="image featured"><img src="{{MEDIA_URL}}{{ perfil.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="{% url "perfil" perfil.slug %}">{{ perfil.nombre }}</a></h3>
+								</header>
+								<p>
+									{{ perfil.profesion }}
+								</p>
+							</article>
+
+                            {% endfor %}
+                            {% for perfil in perfiles2 %}
+                            <article class="4u 12u(mobile) special">
+								<a href="{% url "perfil" perfil.slug %}" class="image featured"><img src="{{ MEDIA_URL }}{{ perfil.imagen }}" alt="" /></a>
+								<header>
+									<h3><a href="{% url "perfil" perfil.slug %}">{{ perfil.nombre }}</a></h3>
+								</header>
+								<p>
+									{{ perfil.profesion }}
+								</p>
+							</article>
+
+                            {% endfor %}
+                            </div>
+
+                            {% load static from staticfiles %}
+							<!--<a href="#" class="image featured"><img src="{% static "images/pic06.jpg" %}" alt="" /></a>-->
+
+						</article>
+						<hr />
+
+					</div>
+
+				</div>
+
+		</div>
+	</body>
+{% endblock Content %}

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title></title>
     {% load static  from staticfiles %}
+        <script src="{% static "assets/js/jquery.min.js" %}"></script>
 		<link rel="stylesheet" href="{% static "assets/css/main.css" %}">
         <link rel="stylesheet" href="{% static "assets/css/font-awesome.min.css" %}">
 
@@ -160,7 +161,6 @@
 				</div>
 {% endblock Footer %}
 {% block Scripts %}
-    <script src="{% static "assets/js/jquery.min.js" %}"></script>
     <script src="{% static "assets/js/jquery.dropotron.min.js" %}"></script>
     <script src="{% static "assets/js/jquery.scrolly.min.js" %}"></script>
     <script src="{% static "assets/js/jquery.onvisible.min.js" %}"></script>
