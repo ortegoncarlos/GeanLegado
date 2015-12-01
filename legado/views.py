@@ -160,8 +160,13 @@ def ContactoIndex(request):
 
 from .serializers import PerfilSerializer
 from rest_framework import viewsets
+from rest_framework import serializers
+from rest_framework.response import Response
+from .permissions import IsAccountAdminOrReadOnly
 
 class PerfilViewSet(viewsets.ModelViewSet):
     queryset = Perfil.objects.all()
     serializer_class = PerfilSerializer
+    permission_classes = [IsAccountAdminOrReadOnly]
+
 

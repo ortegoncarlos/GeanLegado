@@ -4,10 +4,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from rest_framework import routers
-from legado.views import PerfilViewSet
+from legado.views import PerfilViewSet 
 
 router = routers.DefaultRouter()
 router.register(r'pefil',PerfilViewSet)
+
 
 
 urlpatterns = patterns('',
