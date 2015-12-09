@@ -69,7 +69,7 @@
       // Remove any existing results.
       $('.ac-results').remove()
 
-      var results = data.results || []
+      var results = data || []
       var results_wrapper = $('<div class="ac-results"></div>')
       var base_elem = $('<div class="result-wrapper"><a href="#" class="ac-result"></a></div>')
 
@@ -78,7 +78,7 @@
           var elem = base_elem.clone()
           // Don't use .html(...) here, as you open yourself to XSS.
           // Really, you should use some form of templating.
-          elem.find('.ac-result').text(results[res_offset])
+          elem.find('.ac-result').text(results[res_offset]["fields"]["nombre"])
           results_wrapper.append(elem)
         }
       }

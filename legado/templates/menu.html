@@ -21,6 +21,17 @@
 								</li>
 								<li><a href="{% url "somos" %}">¿Quiénes Somos?</a></li>
 								<li><a href="{% url 'homenajes' %}">Homenajes</a></li>
+                                {% if user.is_authenticated %}
+							    <li><a href="" class="">{{user}}</a>
+                                <ul>
+									<li><a href="{% url 'mishomenajes' %}">Mis homenajes</a></li>
+
+								</ul>
+
+                                </li>
+							    {%else%}
+							    <li><a href="" >Ingresa</a></li>
+							    {%endif%}
 								<li><a href="{% url 'contacto' %}">Contáctenos</a></li>
 							</ul>
 						</nav>

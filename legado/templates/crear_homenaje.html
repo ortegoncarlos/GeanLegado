@@ -1,0 +1,69 @@
+{%extends "base.html"%}
+
+{% block Content %}
+	<body class="no-sidebar">
+		<div id="page-wrapper">
+			<!-- Header -->
+				<div id="header" >
+
+					<!-- Inner -->
+						<div class="inner">
+							<header>
+								<h1><a href="{% url "inicio" %}" id="logo">El gran Legado</a></h1>
+							</header>
+						</div>
+					<!-- Nav -->
+					{% include 'menu.html' %}
+				</div>
+			<!-- Main -->
+				<div class="wrapper style1">
+
+					<div class="container">
+						<article id="main" class="special">
+							<header>
+								<h2><a href="{% url "homenajes" %}">{{ homenaj.nombre }}</a></h2>
+								<p>
+									{{ homenaj.resumen | safe }}
+								</p>
+							</header>
+                         {% load static  from staticfiles %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+                 <form method="post" class="form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+
+                    {{ field.errors }}
+                    {{ field.label_tag }}
+                    {% if field.label == "Listo" %}
+                    <div class="6u 12u(narrower) slideThree" >
+                   {{ field }}
+                   <label for="id_listo"></label>
+
+                   </div>
+                   <label  for="copy">Marque si esta seguro que termino el homenaje</label>
+
+                    {% else %}
+                    {{ field }}
+
+                    {% endif %}
+
+                {% endfor %}
+                <input type="submit" value="Guardar" />
+            </form>
+
+
+
+                            {% load static from staticfiles %}
+							<!--<a href="#" class="image featured"><img src="{% static "images/pic06.jpg" %}" alt="" /></a>-->
+
+						</article>
+						<hr />
+
+					</div>
+
+				</div>
+
+		</div>
+	</body>
+{% endblock Content %}

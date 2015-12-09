@@ -33,10 +33,9 @@ class LegajadosAdmin(admin.ModelAdmin):
 
 
 class AdminPerfil(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ['nombre'] }
     list_display = ( 'nombre','qr_tag','audio_file_player')
     actions = ['custom_delete_selected']
-    readonly_fields = ('qr_tag', "qrcode", 'audio_file_player', )
+    readonly_fields = ('qr_tag', "qrcode", 'audio_file_player',"foto_perfil" )
 
 def custom_delete_selected(self, request, queryset):
     #custom delete code

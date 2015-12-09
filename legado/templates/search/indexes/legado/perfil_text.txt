@@ -1,0 +1,5 @@
+{{ object.nombre }}
+{{ object.profesion }}
+{{ object.imagen }}
+{{ object.slug }}
+{{ object.id }}
