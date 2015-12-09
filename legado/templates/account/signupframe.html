@@ -1,0 +1,17 @@
+
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}¿ya tiene una cuenta?, Por favor <a href="{{ login_url }}">Ingrese Aqui</a>.{% endblocktrans %}</p>
+
+<form id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form}}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <div class="form-actions">
+  <button class="btn btn-primary button" type="submit">{% trans "Sign Up" %}</button>
+  </div>
+</form>
+
+

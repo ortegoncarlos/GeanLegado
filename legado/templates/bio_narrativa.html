@@ -10,7 +10,7 @@
 					<!-- Inner -->
 						<div class="inner">
 							<header>
-								<h1><a href="{% url "inicio" %}" id="logo">El gran Legado</a></h1>
+								<h1>{%include "logo.html"%}</h1>
 							</header>
 						</div>
 
@@ -25,54 +25,33 @@
 					<div class="container">
 						<article id="main" class="special">
 							<header>
-								<h2><a href="{% url "biografia-narrativa" %}">{{ bio_narra.nombre }}</a></h2>
-								<p>
-									Morbi convallis lectus malesuada sed fermentum dolore amet
-								</p>
+								<h2><a href="{% url "biografia-narrativa" %}">{{ bio_narra.nombre }}</a>Biografia - Narrativa</h2>
 							</header>
                             {% load static from staticfiles %}
 							<!--<a href="#" class="image featured"><img src="{{ STATIC_URL }}{{ team.imagen }}" alt="" /></a>-->
 
 							<section>
 								<header>
-									<h3>Biografia</h3>
+									<h3>Biografia - Narrativa</h3>
 								</header>
-								<p>
-									{{ bio_narra.texto  | safe }}
+								
+									Gabriel García Márquez 
+								<p>	 
+									<h3>Lugar de nacimiento: </h3>Municipio de Aracata, Magdalena, Colombia<br>
+									<h3>Fecha de nacimiento: </h3>6 de marzo de 1927<br>
+									<h3>Géneros literarios: </h3>Novelas / Cuentos<br>
+									<br>
+									<h3>Estructúra </h3>
+									Es hijo de Gabriel Eligio García y de Luisa Santiaga Márquez Iguarán, Gabriel García Márquez nació en Aracataca, en el departamento del Magdalena, Colombia.<br>
+									Cursó sus estudios secundarios en San José a partir de 1940 y finalizó su bachillerato en el Colegio Liceo de Zipaquirá, el 12 de diciembre de 1946. Se matriculó en la Facultad de Derecho de la Universidad Nacional de Cartagena el 25 de febrero de 1947, aunque sin mostrar excesivo interés por los estudios. Su amistad con el médico y escritor Manuel Zapata Olivella le permitió acceder al periodismo. Inmediatamente después del "Bogotazo" (el asesinato del dirigente liberal Jorge Eliécer Gaitán en Bogotá, las posteriores manifestaciones y la brutal represión de las mismas), comenzaron sus colaboraciones en el periódico liberal El Universal.
+									García Márquez contrajo matrimonio en Barranquilla en 1958 con Mercedes Barcha, la hija de un boticario. En 1959 tuvieron a su primer hijo, Rodrigo, quien se convirtió en cineasta; y tres años después, nació su segundo hijo, Gonzalo, actualmente diseñador gráfico en Ciudad de México.<br>
+									A los veintisiete años publicó su primera novela, "La hojarasca", en la que ya apuntaba los rasgos más característicos de su obra de ficción, llena de desbordante fantasía.<br>
+									Pero, la notoriedad mundial de García Márquez comienza cuando se publica "Cien años de soledad" en junio de 1967, en una semana vendió 8000 copias. De allí en adelante, el éxito fue asegurado, y la novela vendió una nueva edición cada semana, pasando a vender medio millón de copias en tres años. Fue traducido a más de veinticuatro idiomas, y ganó cuatro premios internacionales. El éxito había llegado por fin y el escritor tenía 40 años cuando el mundo aprendió su nombre. Por la correspondencia de admiradores, los premios, entrevistas, las comparecencias; era obvio que su vida había cambiado. En 1969 la novela ganó el Chianchiano Aprecia en Italia y fue denominado el «Mejor Libro Extranjero» en Francia. En 1970, fue publicado en inglés y fue escogido como uno de los mejores doce libros del año en Estados Unidos.<br>
+									García Márquez ha recibido numerosos premios, distinciones y homenajes por sus obras; el mayor de todos ellos, el Premio Nobel de Literatura en 1982. Según la laudatoria de la Academia Sueca, «por sus novelas e historias cortas, en las que lo fantástico y lo real son combinados en un tranquilo mundo de imaginación rica, reflejando la vida y los conflictos de un continente".<br>
+									Libros más destacados: Cien Años de Soledad, Crónica de una Muerte Anunciada, Del Amor y Otros Demonios, Doce Cuentos Peregrinos, El Amor En Los Tiempos Del Cólera, El Coronel No Tiene Quien Le Escriba, Noticia de un Secuestro, Relato De Un Naufrago, Vivir Para Contarla.
 								</p>
 							</section>
-						</article>
-						<hr />
-						<div class="row">
-							<article class="4u 12u(mobile) special">
-								<a href="#" class="image featured"><img src="{% static "images/pic07.jpg" %}" alt="" /></a>
-								<header>
-									<h3><a href="#">Gravida aliquam penatibus</a></h3>
-								</header>
-								<p>
-									{{ team.parrafo_cuatro  | safe }}
-								</p>
-							</article>
-							<article class="4u 12u(mobile) special">
-								<a href="#" class="image featured"><img src="{% static "images/pic08.jpg" %}" alt="" /></a>
-								<header>
-									<h3><a href="#">Sed quis rhoncus placerat</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
-							<article class="4u 12u(mobile) special">
-								<a href="#" class="image featured"><img src="{% static "images/pic09.jpg" %}" alt="" /></a>
-								<header>
-									<h3><a href="#">Magna laoreet et aliquam</a></h3>
-								</header>
-								<p>
-									Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor etiam
-									porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat integer interdum.
-								</p>
-							</article>
+						</article>						
 						</div>
 					</div>
 

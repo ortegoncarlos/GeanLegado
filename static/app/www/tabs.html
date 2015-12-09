@@ -12,6 +12,65 @@
           <a ui-set="{'activeTab': 1}">Biografía</a>
         </li>
         <li ui-class="{'active': activeTab == 2}">
+          <a ui-set="{'activeTab': 2}">Contenido relacionado</a>
+        </li>
+        <li ui-class="{'active': activeTab == 3}">
+          <a ui-set="{'activeTab': 3}">Regalos</a>
+        </li>
+      </ul>
+
+      <div ui-if="activeTab == 1">
+        <h3 class="page-header">{{detail.nombre}}</h3>
+        <img src="{{web}}/media/{{detail.imagen}}" style="margin-left:auto; margin-right:auto">
+        <br>
+        <br>
+        <p ng-bind-html="detail.biografia | to_trusted"><p>
+      </div>
+
+      <div ui-if="activeTab == 2">
+        <h3 class="page-header">Contenido relacionado</h3>
+        <h4> Orígen del apellido </h4>
+        <p>{{detail.origen_apellido}}</p>
+        
+        <h4>Reconocimientos de {{detail.nombre}}:</h4>
+        <p>En 1994, Gaviria fue elegido Secretario General de la OEA el máximo cargo de la organización. Su período como secretario inició al término de su período presidencial en agosto de 1994, fue electo por unanimidad, Gaviria es reelegido en la Secretaría de la OEA en 1999, terminó su mandato en 2004.<p>
+      </div>
+
+      <div ui-if="activeTab == 3">
+        <h3 class="page-header">Regalos</h3>
+        <h4>Regala una flor</h4>
+        <h4>Regala una frase</h4>
+      </div>
+
+      <div class="btn-group justified nav-tabs">
+        <a ui-set="{'activeTab': 1}" 
+            ui-class="{'active': activeTab == 1}" class="btn btn-default">Biografía</a>
+
+        <a ui-set="{'activeTab': 2}" 
+            ui-class="{'active': activeTab == 2}" class="btn btn-default">Contenido relacionado</a>
+
+        <a ui-set="{'activeTab': 3}" 
+            ui-class="{'active': activeTab == 3}" class="btn btn-default">Regalos</a>
+      </div>  
+    </div>
+
+  </div>
+</div>
+
+<!-- <div ui-content-for="title">
+  <span>{{detail.nombre}}</span>
+</div>
+
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class='section'>
+      <ui-state id='activeTab' default='1'></ui-state>
+
+      <ul class="nav nav-tabs">
+        <li ui-class="{'active': activeTab == 1}">
+          <a ui-set="{'activeTab': 1}">Biografía</a>
+        </li>
+        <li ui-class="{'active': activeTab == 2}">
           <a ui-set="{'activeTab': 2}">Reconocimientos</a>
         </li>
         <li ui-class="{'active': activeTab == 3}">
@@ -20,26 +79,33 @@
       </ul>
 
       <div ui-if="activeTab == 1">
-        <h3 class="page-header">Biografía</h3>
-        <h4>{{detail.nombre}}</h4>
-        <h5>
-        {{detail.fecha_nacimiento}}<br>
-        {{detail.lugar_nacimiento}}<br>
-         <img src="{{web}}/media/{{detail.qrcode}}"><br>
-        </h5>
-        <div>
-
-          <img src="{{web}}/media/{{detail.imagen}}">
-          
-        {{detail.biografia}}
-       
         
+        <h3 class="page-header">Biografía</h3>
+        <h3>{{detail.nombre}}</h3>
+        
+        <h4>
+          Luegar de nacimiento: {{detail.lugar_nacimiento}}<br>
+          Fecha de nacimiento: {{detail.fecha_nacimiento}}<br>
+          Profesión: {{detail.profesion}}<br> 
+        </h4>
+        
+        <div class="foto_perfil">
+        <br>
+          <img src="{{web}}/media/{{detail.imagen}}">
+        <br>
+        <br>
+
+          <p ng-bind-html="detail.biografia | to_trusted"><p>
+        <br>
+          <img src="{{web}}/{{detail.qrcode | to_trusted}}"><br>
         </div>
+      
       </div>
+
 
       <div ui-if="activeTab == 2">
         <h3 class="page-header">Reconocimientos</h3>
-        <p>{{detail.profesion}}</p>
+        <p>{{detail.reconocimientos}}</p>
       </div>
 
       <div ui-if="activeTab == 3">
@@ -47,7 +113,37 @@
         <p>{{detail.origen_apellido}}</p>
       </div>
 
-      <div class="btn-group justified nav-tabs">
+      <div class="scrollable">
+  <div class="scrollable-content">
+    <div class="section">
+      <div class="panel-group" 
+        
+        ui-state='myAccordion' 
+        >
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+        
+            <h4 class="panel-title">
+                <h3 class="page-header">Biografía</h3>
+            </h4>
+          </div>
+
+          <div>
+            <div class="panel-body">
+              <p ng-bind-html="detail.biografia | to_trusted"><p>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+     <div class="btn-group justified nav-tabs">
         <a ui-set="{'activeTab': 1}" 
             ui-class="{'active': activeTab == 1}" class="btn btn-default">Biografía</a>
 
@@ -60,4 +156,4 @@
     </div>
 
   </div>
-</div>
+</div> -->

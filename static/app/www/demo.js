@@ -5,9 +5,12 @@
 var app = angular.module('MobileAngularUiExamples', [
   'ngRoute',
   'mobile-angular-ui',
-  
   'mobile-angular-ui.gestures',
-  'ngMap'
+  'ngMap',
+  'ngSanitize',
+  'ngAnimate',
+
+
 ]);
 
 app.run(function($transform) {
@@ -26,15 +29,22 @@ app.config(function($routeProvider) {
   $routeProvider.when('/mapa',         {templateUrl: 'swipe.html', reloadOnSearch: false});
  
   $routeProvider.when('/scanner',      {templateUrl: 'scanner.html', reloadOnSearch: false});
+
+  
 });
 
 
-
+angular.module('MobileAngularUiExamples')
+    .filter('to_trusted', ['$sce', function($sce){
+        return function(text) {
+            return $sce.trustAsHtml(text);
+        };
+    }]);
 //
 // For this trivial demo we have just a unique MainController 
 // for everything
 //
-app.controller('MainController', function($rootScope, $scope, $http, $routeParams){
+app.controller('MainController', function($rootScope, $scope, $http, $routeParams, $sce){
  $scope.web = "http://gl.pulsar.la"
   $scope.swiped = function(direction) {
     alert('Swiped ' + direction);
@@ -48,13 +58,12 @@ app.controller('MainController', function($rootScope, $scope, $http, $routeParam
     $rootScope.loading = true;
   });
 
-  $rootScope.$on('$routeChangeSuccess', function(){
+  $rootScope.$on('$routeChangeSuccess', function($sce){
     $rootScope.loading = false;
-    $scope.pefilid = $routeParams["id"]
+    $scope.perfilid = $routeParams["id"]
     if ($routeParams) {
-        $http.get($scope.web+'/api/pefil/'+$scope.pefilid+'?format=json').
+        $http.get($scope.web+'/api/perfil/'+$scope.perfilid+'?format=json').
           success(function(data) {
-            console.log($scope.pefilid+data)
               $scope.detail = data;
           });
 
@@ -62,18 +71,13 @@ app.controller('MainController', function($rootScope, $scope, $http, $routeParam
   });
 
 
- 
-
-
-  // 
-  // 'Scroll' screen
-  // 
-  
-
-  $http.get($scope.web+'/api/pefil/?format=json').
+  $http.get($scope.web+'/api/perfil/?format=json').
       success(function(data) {
           $scope.perfil = data;
       });
+// Acordion
+$scope.oneAtATime = true;
+
 
 
   //

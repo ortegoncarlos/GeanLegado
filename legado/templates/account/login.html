@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block login %}
+
+	<br>
+	<h2>{% trans "Ingrese al evento" %}</h2>
+	
+	{% if socialaccount.providers %}
+<section class="row">
+	<div class="12u row" >
+		<div class="12u">
+			<h1>{% trans "Ya tienes cuenta" %}</h1>
+			<p>{% trans " Puedes ingresar usando gmail o tu cuenta" %}</p>
+		</div>	
+
+			<div class="6u" >
+				<form class="login" method="POST" action="{% url 'account_login' %}">
+				  {% csrf_token %}
+				  {{ form}}
+				  {% if redirect_field_value %}
+				  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+				  {% endif %}
+				  <div class="form-actions">
+				    <button class="btn btn-primary button" type="submit">{% trans "Entrar" %}</button>
+				  </div> 
+				  <a href="accounts/password/reset/">Olvidaste tu contraseña click aqui</a>
+				</form>
+			</div>
+			<div class="6u"><br></div>
+			<div class="6u" >
+				<div class="socialaccount_ballot">
+
+				  <ul class="socialaccount_providers">
+						    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+					</ul>
+				</div>
+
+				{% include "socialaccount/snippets/login_extra.html" %}
+
+				{% endif %}
+			</div>
+
+
+	</div>	
+	<div class="12u">
+			<h1 class="12u">{% trans "No tienes una cuenta" %}</h1>
+			  <a class="button 12u" href="{% url 'account_signup' %}">Registrate</a>
+	</div>
+	<!--div class="4u"></div>
+	<div class="4u" id="copyright">
+	<h1>{% trans "¿No tienes cuenta?" %}</h1>
+			<p>{% trans "Registrese Gratis" %}</p>
+		<form id="signup_form" method="post" action="{% url 'account_signup' %}">
+		  {% csrf_token %}
+		  {{ form}}
+		  {% if redirect_field_value %}
+		  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+		  {% endif %}
+		  <div class="form-actions">
+		  <button class="btn btn-primary button" type="submit">{% trans "Registrese" %}</button>
+		  </div>
+		</form>
+	</div-->
+</section>
+{% endblock %}

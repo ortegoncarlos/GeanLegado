@@ -19,7 +19,7 @@ class PerfilForm(forms.ModelForm):
     audio_file = forms.FileField(widget=CustomerAudioFileWidget)
     class Meta:
         model = Perfil
-        fields = ['nombre','fecha_nacimiento','lugar_nacimiento','imagen','profesion','biografia','origen_apellido','slug','audio_file','listo']
+        fields = ['nombre','fecha_nacimiento','lugar_nacimiento','imagen','profesion','biografia','origen_apellido','audio_file','listo']
 
         widgets = {
             'listo': CheckboxInput(attrs={'hidden': 'hidden'})

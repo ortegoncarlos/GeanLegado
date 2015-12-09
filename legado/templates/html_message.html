@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    {% load static  from staticfiles %}
+    <link rel="stylesheet" href="{% static "assets/css/html_message.css" %}">
+</head>
+<body>
+<style>
+body{
+    background: #EBEBEB;
+    color: #777;
+    letter-spacing: -0.015em;
+
+}
+    h2{
+        color:#646464;
+        font-size: 1.75em;
+        line-height: 1.5em;
+        letter-spacing: -0.025em;
+        margin-left:40%
+
+    }
+    section{
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 2px 0 0 #e5e5e5;
+        margin: 0 0 2em 0;
+        padding: 3em;
+        margin-left:40%;
+        font-size: medium;
+
+
+    }
+    a{
+
+        color: #fff;
+        background: #ef8376;
+        border-radius: 0.5em;
+        padding: 0.65em 3em 0.65em 3em;
+        cursor: pointer;
+        border: 0;
+        margin-left:40%
+    }
+
+</style>
+    <h2>Gran Legado</h2>
+    <section>
+         <p>{{ user_name }}</p>
+        <p>{{ subject }}</p>
+
+    </section>
+<a href="http://gl.pulsar.la/" class="button">Visitenos</a>
+
+</body>
+</html>

@@ -256,3 +256,42 @@ class EjercitoMilitar(models.Model):
 
     def __unicode__(self):
         return self.nombre
+        
+class FloresRegalo(models.Model):
+    imagen = models.FileField(upload_to='img/floresregalo')
+
+class FrasesRegalo(models.Model):
+    texto = models.TextField(verbose_name='Texto')
+
+
+class RegaloEnvio(models.Model):
+    id_user_re = models.IntegerField(verbose_name='Usuario que Recibe')
+    id_perfil_re = models.IntegerField(verbose_name='Perfil que Recibe')
+    frase = models.TextField(verbose_name='Frase',null=True,blank=True)
+    imagen = models.FileField(upload_to='img/floresenvio')
+    date = models.DateTimeField(verbose_name="Fecha de Regalo",auto_now_add=True)
+    opacity = models.DecimalField(verbose_name="Opaca la Flor",default=0.9,max_digits=3,decimal_places=2)
+    dias = models.IntegerField(verbose_name="Dias de enviado",default=0)
+    id_user_en = models.IntegerField(verbose_name='Usuario que Envia')
+    user = models.CharField(max_length=100, verbose_name='Nombre del Usuario que Envia')
+
+class TipoEmail(models.Model):
+    tipo = models.CharField(verbose_name='Tipo de correo',max_length=100)
+
+    class Meta:
+        verbose_name = 'Tipo de Correo'
+        verbose_name_plural='Tipos de Correo'
+    def __unicode__(self):
+        return self.tipo
+
+
+class DatoEmail(models.Model):
+    asunto = models.CharField(verbose_name='Asunto del correo',max_length=200)
+    cuerpo = models.TextField(verbose_name='Cuerpo del correo')
+    tipo = models.ForeignKey(TipoEmail,verbose_name='Tipo de correo')
+
+    class Meta:
+        verbose_name = 'Dato de Correo'
+        verbose_name_plural='Datos del Correo '
+    def __unicode__(self):
+        return self.asunto

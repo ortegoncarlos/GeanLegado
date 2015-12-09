@@ -9,7 +9,7 @@
 					<!-- Inner -->
 						<div class="inner">
 							<header>
-								<h1><a href="{% url "inicio" %}" id="logo">El gran Legado</a></h1>
+								<h1>{%include "logo.html"%}</h1>
 							</header>
 						</div>
 					<!-- Nav -->
@@ -37,8 +37,8 @@
 
                             {% if perfil.listo %}
 
-								<a href="{% url "perfil" perfil.slug %}" class="image featured"><img src="{{ perfil.imagen.url }}" alt="" /></a>
-asdasd
+								<a href="{% url "perfil" perfil.slug %}" class="image featured"><img src="{{ perfil.imagen.url  }}" alt="" /></a>
+
                              	<header>
 									<h3><a href="{% url "perfil" perfil.slug %}">{{ perfil.nombre }}</a></h3>
 								</header>

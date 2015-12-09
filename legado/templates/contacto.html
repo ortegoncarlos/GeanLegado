@@ -10,7 +10,7 @@
 					<!-- Inner -->
 						<div class="inner">
 							<header>
-								<h1><a href="{% url "inicio" %}" id="logo">El gran Legado</a></h1>
+								<h1>{%include "logo.html"%}</h1>
 							</header>
 						</div>
 
@@ -29,7 +29,7 @@
 
 							</header>
                             {% load static from staticfiles %}
-							<!--<a href="#" class="image featured"><img src="{{ STATIC_URL }}{{ team.imagen }}" alt="" /></a>-->
+	
 							<section>
 
 								<p>

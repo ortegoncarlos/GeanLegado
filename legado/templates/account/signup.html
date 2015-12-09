@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block login %}
+<h1>{% trans "Sign Up" %}</h1>
+	<p>¿tienes cuenta de google o gmail?,Registrate usando la</p>
+			<div  >
+
+				<div class="socialaccount_ballot">
+
+				  <ul class="socialaccount_providers">
+						    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+					</ul>
+				</div>
+
+				{% include "socialaccount/snippets/login_extra.html" %}
+
+			</div>
+
+<p>¿no tienes cuenta de google?, ingresa los siguientes datos</p>
+
+<form id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form}}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <div class="form-actions">
+  	<p>después de registrate, recibirás un correo de confirmación, dale click al link</p>
+  <button class="btn btn-primary button" type="submit">{% trans "Sign Up" %}</button>
+  </div>
+</form>
+
+<p>{% blocktrans %}¿ya tiene una cuenta?, Por favor <a href="{{ login_url }}">Ingrese Aqui</a>.{% endblocktrans %}</p>
+
+{% endblock %}

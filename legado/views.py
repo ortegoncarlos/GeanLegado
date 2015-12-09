@@ -11,6 +11,11 @@ import json
 from django.core.mail import send_mail
 from django.core import serializers
 
+from sanjose_project.settings import FRASE_REGALAR
+from datetime import date
+from dateutil.relativedelta import relativedelta
+from django.template import loader
+
 def autocomplete(request):
     #sqs = SearchQuerySet().autocomplete(nombre=request.GET.get('q', ''))[:5]
     sqs1 = SearchQuerySet().models(Perfil).load_all().autocomplete(nombre=request.GET.get('q','')) 
@@ -105,6 +110,80 @@ def FuerzaPublicaIndex(request):
 def PerfilPersona(request, slug):
     perfil_persona = get_object_or_404(Perfil,slug=slug)
     fotos = FotosPerfil.objects.filter(perfil_id=perfil_persona.id)
+    frases = FrasesRegalo.objects.all()
+    flores = FloresRegalo.objects.all()
+    try :
+        regalos = RegaloEnvio.objects.filter(id_user_re=perfil_persona.usuario.id,id_perfil_re=perfil_persona.id)
+        for item in regalos:
+            item.dias = date.today().day-item.date.date().day
+            if item.date.date() + relativedelta(days=5)>date.today():
+                item.opacity = 0.8
+            if item.date.date() + relativedelta(days=5)<date.today()<item.date.date() + relativedelta(days=10):
+                item.opacity = 0.7
+            if item.date.date() + relativedelta(days=10)<date.today()<item.date.date() + relativedelta(days=15):
+                item.opacity = 0.6
+            if item.date.date() + relativedelta(days=15)<date.today()<item.date.date() + relativedelta(days=20):
+                item.opacity = 0.5
+            if item.date.date() + relativedelta(days=20)<date.today()<item.date.date() + relativedelta(days=25):
+                item.opacity = 0.4
+            if item.date.date() + relativedelta(days=25)<date.today()<item.date.date() + relativedelta(days=30):
+                item.opacity = 0.3
+            if item.date.date() + relativedelta(days=30)<date.today():
+                item.delete()
+    except:
+        pass
+
+    if request.method == 'POST':
+
+        if request.POST['tipo'] == 'FloresRegalo':
+            f = FloresRegalo.objects.get(id=request.POST['flores'])
+            email = DatoEmail.objects.first()
+            user_rec= User.objects.get(id=request.POST['usuario'])
+            user_env = User.objects.get(id=request.user.id)
+            html_message = loader.render_to_string(
+            'html_message.html',
+            {
+                'user_name': str(user_rec),
+                'subject':  "Hola estimado " + str(user_rec) + ",has recibido un regalo flor de parte de "+ str(user_env)+" "+ email.cuerpo,
+
+            }
+        )
+
+            #Aqui se envia el correo informando al usuario quien envio en regalo y que regalo fue
+
+            send_mail(email.asunto,
+                      'mensaje',
+                      'info@enlacarretera.co',
+                      ['info@enlacarretera.co'], fail_silently=False,html_message=html_message)
+
+
+            new_reg = RegaloEnvio(id_user_re=request.POST['usuario'],id_perfil_re=request.POST['perfil'],frase=request.POST['text'],imagen=f.imagen,id_user_en=request.user.id,user=request.user.username)
+            new_reg.save()
+
+        else:
+            f = FrasesRegalo.objects.get(id=request.POST['genero'])
+            new_reg = RegaloEnvio(id_user_re=request.POST['usuario'],id_perfil_re=request.POST['perfil'],frase=f.texto,id_user_en=request.user.id,user=request.user.username)
+            email = DatoEmail.objects.first()
+            user_rec = User.objects.get(id=request.POST['usuario'])
+            user_env = User.objects.get(id=request.user.id)
+            html_message = loader.render_to_string(
+            'html_message.html',
+            {
+                'user_name': str(user_rec),
+                'subject':  "Hola estimado " + str(user_rec) + ",has recibido un regalo frase de parte de "+ str(user_env)+" "+ email.cuerpo,
+
+            }
+        )
+
+            #Aqui se envia el correo informando al usuario quien envio en regalo y que regalo fue
+
+            send_mail(email.asunto,
+                      'mensaje',
+                      'info@enlacarretera.co',
+                      ['info@enlacarretera.co'], fail_silently=False)
+
+
+            new_reg.save()
     return render_to_response('perfil-persona.html',locals(), context_instance=RequestContext(request))
 
 class EditarHomenaje(UpdateView):
@@ -126,6 +205,10 @@ def Fotos(request, id):
 def EjercitoIndex(request, id):
     ejer = EjercitoMilitar.objects.get(id=id)
     return render_to_response('ejercito.html', locals(), context_instance=RequestContext(request))
+
+def SuspenderHomenaje(request, id):
+    Perfil.objects.filter(id=id).update(listo=False)
+    return HttpResponseRedirect('/mishomenajes/')
 
 def Reconocimientos(request, id):
     perfil_persona = Perfil.objects.get(id=id)
@@ -158,7 +241,7 @@ def ContactoIndex(request):
     direc = Direccion.objects.first()
     return render_to_response('contacto.html',locals(), context_instance=RequestContext(request))
 
-from .serializers import PerfilSerializer
+from .serializers import PerfilSerializer, FotosPerfilSerializer
 from rest_framework import viewsets
 from rest_framework import serializers
 from rest_framework.response import Response
@@ -170,3 +253,7 @@ class PerfilViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAccountAdminOrReadOnly]
 
 
+class FotosPerfilViewSet(viewsets.ModelViewSet):
+    queryset = Perfil.objects.all()
+    serializer_class = FotosPerfilSerializer
+    permission_classes = [IsAccountAdminOrReadOnly]

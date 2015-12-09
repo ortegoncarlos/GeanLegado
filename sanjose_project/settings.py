@@ -26,6 +26,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+SITE_ID = 1
+
 
 # Application definition
 
@@ -45,7 +47,28 @@ INSTALLED_APPS = (
     'legado',
     'audiofield',
     #'photologue',
-     'sortedm2m',
+    'sortedm2m',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # #'allauth.socialaccount.providers.dropbox',
+    #'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.evernote',
+    # 'allauth.socialaccount.providers.google',
+    #'allauth.socialaccount.providers.github',
+    #'allauth.socialaccount.providers.linkedin',
+    #'allauth.socialaccount.providers.openid',
+    #'allauth.socialaccount.providers.persona',
+    #'allauth.socialaccount.providers.soundcloud',
+    #'allauth.socialaccount.providers.stackexchange',
+    #'allauth.socialaccount.providers.twitch',
+    #'allauth.socialaccount.providers.twitter',
+   # 'allauth.socialaccount.providers.vimeo',
+    #'allauth.socialaccount.providers.weibo',
+   # 'allauth.socialaccount.providers.xing',
+
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,6 +90,8 @@ REST_FRAMEWORK = {
     ]
 }
 
+
+
 ROOT_URLCONF = 'sanjose_project.urls'
 
 WSGI_APPLICATION = 'sanjose_project.wsgi.application'
@@ -79,6 +104,10 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+
+AUTHENTICATION_BACKENDS = (
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 DATABASES = {
     'default': {
@@ -168,6 +197,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     'legado.context_processors.mostrarfrase',
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
 
 )
 
@@ -187,6 +218,7 @@ CONVERT_TYPE_VALUE = 0
 PALABRAS_INAPROPIADAS = ['malapalabra1','malapalabra2','malapalabra3','malapalabra4','malapalabra5','mi casa']
 EXPRESION_REGULAR_URL = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
 MENSAJE_URLS = 'La biografia que usted intenta hacer no sera posible guardar porque contiene direcciones url'
+FRASE_REGALAR = ['frase1','frase2','frase3','frase4','frase5','frase6','frase1','frase7','frase8','frase9','frase10','frase11','frase12','frase13']
 
 # HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 

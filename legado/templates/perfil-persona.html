@@ -25,7 +25,7 @@
 
 			<!-- Header -->
 				<div id="header">
-
+		
 					<!-- Inner -->
 						<div class="inner">
 							<header>
@@ -66,6 +66,8 @@
 					<div class="container">
 						<div class="row 200%">
 							<div class="4u 12u(mobile)" id="sidebar">
+													<span><a  style="float: right;;margin: 0.5%" onclick="zoomIn()" class=" icon fa-plus-square  " href="#" ></a></span>
+                            <span><a style="float: right;margin: 0.5%"  onclick="zoomOut()" class=" icon fa-minus-square " href="#" ></a></span>
 								<hr class="first" />
 								<section>
                                         <p><h3><a href="{% url 'reconocimientos' perfil_persona.id  %}" class="button 12u">Reconocimiento</a></h3></p>
@@ -96,7 +98,81 @@
 									<p>
 										{{ perfil_persona.biografia | safe }}
 									</p>
+																	<header>
+										<h2><a href="{% url "perfil" perfil_persona.slug %}">{{ perfil_persona.nombre }}</a></h2>
 
+                           <a class="js-open-modal button small regalar" href="#" data-modal-id="popup1">Flores</a>
+                          <a class="js-open-modal  button small regalar" href="#" data-modal-id="popup2">Frases</a>
+<div id="popup1" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <h3>Obsequiale una flor!</h3>
+  </header>
+  <div class="modal-body">
+
+     <FORM method=post action=".">{% csrf_token %}
+            {% for item in flores %}
+                 <input type=radio name="flores" id={{ item.imagen }} value={{ item.id}}>
+                    <label for={{ item.imagen }}><img style="width: 60px;height: 60px" src="{{ MEDIA_URL }}{{ item.imagen }}" alt="" /></label>
+                <input  type=hidden name="tipo" id="tipo" value={{ item}}>
+            {% endfor %}
+            <label>Mensaje
+            <input  type=text name="text" id="text" >
+            </label>
+             <input  type=hidden name="perfil" id="perfil" value={{ perfil_persona.id}}>
+             <input  type=hidden name="usuario" id="usuario" value={{ perfil_persona.usuario_id}}>
+
+
+  <footer>
+       <input style="float: left" type="submit" value="Enviar">
+      <a href="#" class="btn btn-small js-modal-close">Cerrar</a>
+  </footer>
+    </FORM>
+  </div>
+
+</div>
+<div id="popup2" class="modal-box">
+  <header> <a href="#" class="js-modal-close close">×</a>
+    <h3>Obsequiale una frase!</h3>
+  </header>
+  <div class="modal-body">
+
+    <FORM method=post action=".">{% csrf_token %}
+            {% for item2 in frases %}
+                <input  type=radio name="genero" id={{ item2.id }} value={{ item2.id }}>
+                <label for={{ item2.id }}>{{ item2.texto | safe }}</label>
+                <input  type=hidden name="tipo" id="tipo" value={{ item2}}>
+            {% endfor %}
+             <input  type=hidden name="perfil" id="perfil" value={{ perfil_persona.id}}>
+             <input  type=hidden name="usuario" id="usuario" value={{ perfil_persona.usuario_id}}>
+
+                 <footer>
+                     <input style="float: left" type="submit" value="Enviar">
+                     <a href="#" class="btn btn-small js-modal-close">Cerrar</a>
+                  </footer>
+    </FORM>
+  </div>
+
+</div>
+
+                                    {% for item in regalos %}
+                                        <p class="rega">
+                                        {% if item.imagen == '' %}
+                                            Enviado por :<strong> {{ item.user }}</strong>
+
+                                                <a style="font-family: times, serif; font-size:20pt; font-style:italic">"{{ item.frase | safe }}"</a>
+
+
+                                            {% else %}
+
+                                            <img style="width: 50px;height: 50px;opacity: {{ item.opacity }}" src="{{ MEDIA_URL }}{{ item.imagen }}" alt="" />
+                                       Enviado por :<strong> {{ item.user }}</strong>,hace {{ item.dias }}<br>
+
+                                        <a style="font-family: times, serif; font-size:20pt; font-style:italic">"{{ item.frase | safe  }}"</a>
+
+
+                                        {% endif %}
+                                         </p>
+                                {% endfor %}
 
 								</article>
 							</div>
@@ -109,4 +185,12 @@
 
 
 		</div>
+
 {% endblock Content %}
+{% block extrafootScripts %}
+{% load static  from staticfiles %}
+        <script src="{% static "assets/js/modal.js" %}"></script>
+        <script src="{% static "magnific-popup/jquery.magnific-popup.min.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "magnific-popup/magnific-popup.css"%}">
+        <script src="{% static "assets/js/gallery.js" %}"></script>
+{% endblock %}
